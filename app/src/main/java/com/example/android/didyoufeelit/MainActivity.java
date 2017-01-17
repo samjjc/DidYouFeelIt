@@ -56,12 +56,20 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected Event doInBackground(String... Strings) {
+
+            if (Strings.length < 1 || Strings[0] == null) {
+                return null;
+            }
             Event earthquake = Utils.fetchEarthquakeData(Strings[0]);
             return earthquake;
         }
 
         @Override
         protected void onPostExecute(Event aEvent   ) {
+
+            if (aEvent == null) {
+                return;
+            }
             updateUi(aEvent);
         }
     }
